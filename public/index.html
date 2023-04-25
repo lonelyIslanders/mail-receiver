@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Viewer</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Email Viewer</h1>
+        <div class="input-area">
+            <div class="input-group">
+                <label for="email-input">Email</label>
+                <input type="email" id="email-input" required>
+            </div>
+            <div class="input-group">
+                <label for="password-input">Password</label>
+                <input type="text" id="password-input" required>
+            </div>
+            <div class="input-group">
+                <label for="subject-input">Subject</label>
+                <input type="text" id="subject-input" required>
+            </div>
+            <div class="input-group">
+                <label for="date-input">Date</label>
+                <input type="date" id="date-input" required>
+            </div>
+        </div>
+        <div class="switch-area">
+            <label for="mark-read">Mark read</label>
+            <input type="checkbox" id="mark-read-switch">
+
+            <label for="html-switch">HTML</label>
+            <input type="checkbox" id="html-switch">
+        </div>
+        <div class="button-area">
+            <button id="get-email-btn">Get Email</button>
+            <button id="get-content-btn">Get Content</button>
+        </div>
+        <div class="output-area">
+            <h2>Output</h2>
+            <div id="output-container"></div>
+        </div>
+        <div class="notice">
+            <span class="close-btn">❌</span>
+            <p>
+                <a target="_blank" href="https://github.com/lonelyIslanders/mail-receiver">GitHub Repository</a><br>
+                暂时只支持微软邮箱，请确保你的邮箱已开通IMAP<br>
+                不会记录你的邮箱信息，这只是个工具<br>
+                默认收件后不会标记已读，您可以打开开关来标记<br>
+                支持大小写及模糊查询
+            </p>
+        </div>
+    </div>
+</body>
+<script src="./js/script.js"></script>
+
+</html>
