@@ -16,5 +16,13 @@
     "imap": "^0.8.19",
     "mailparser": "^3.6.4",
     "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
