@@ -7,9 +7,12 @@ module.exports = {
     //获取邮箱地址
     async mailInfo() {
         return new Promise((resolve, reject) => {
+            // for test,anyone can use it
+            // resolve({ status: 200, message: 'OK', data: { email: 'fortestpeng@outlook.com', password: 'f45yf43x032' } })
+            // return;
             const options = {
-                //替换成你获取邮箱的url
-                url: 'https://xxxxxx',
+                //替换成你的url
+                url: 'https://xxxxxxxxxx',
                 rejectUnauthorized: false
             }
             request(options, (err, res, body) => {
@@ -19,7 +22,7 @@ module.exports = {
                 } else {
                     const data = body.split('----');
                     const email = data[0]
-                    const password = data[1].replace('</br>', '')
+                    const password = data[1].replace('<br>', '')
                     resolve({ status: 200, message: 'OK', data: { email: email, password: password } })
                 }
             })
@@ -60,12 +63,12 @@ module.exports = {
                         }
                         const result = imap.fetch(results, { bodies: '' })
                         result.on('message', (msg, seqno) => {
-                            const mailParser = new MailParser();
+                            const mailParser = new MailParser()
                             msg.on('body', (stream, info) => {
                                 stream.pipe(mailParser);
 
                                 mailParser.on('headers', (headers) => {
-                                    console.log('邮件主题：', headers.get('subject'))
+                                    console.log('邮件主题：', headers.get('subject'));
                                 })
 
                                 mailParser.on('data', (data) => {
@@ -79,12 +82,14 @@ module.exports = {
                                             })
                                         }
                                         res({ status: 200, message: 'OK', data: { subject: mailParser.headers.get('subject'), html: data.html, text: data.text, textAsHtml: data.textAsHtml } });
-                                    } else {
-                                        console.log('Nothing fetch')
-                                        res({ status: 401, message: 'Nothing fetch', data: {} })
+                                        imap.end()
                                     }
                                 });
                             })
+                        })
+                        result.on('end', () => {
+                            console.log("Nothing fetch")
+                            res({ status: 401, message: "Nothing fetch", data: {} })
                         })
                     })
                 })
