@@ -24,6 +24,6 @@ app.post('/post/mailContent', async (req, res) => {
 })
 
 
-app.listen(30000, () => {
-    console.log("The mail service is running on port 30000")
+app.listen(30001, () => {
+    console.log("The mail service is running on port 30001")
 })

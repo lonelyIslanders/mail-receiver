@@ -5,6 +5,7 @@ const dateInput = document.getElementById("date-input");
 const outputArea = document.getElementById("output-container");
 const htmlSwitch = document.getElementById("html-switch");
 const markSwitch = document.getElementById("mark-read-switch");
+const boxSwitch = document.getElementById('box-switch');
 const getEmailButton = document.getElementById("get-email-btn");
 const getContentButton = document.getElementById("get-content-btn");
 const notice = document.querySelector('.notice');
@@ -14,7 +15,7 @@ let mailContent = null;
 
 async function getEmail() {
     outputArea.textContent = 'Getting mail……';
-    const response = await fetch("http://localhost:30000/post/mailInfo", {
+    const response = await fetch("http://localhost:30001/post/mailInfo", {
         method: "POST"
     });
     const data = await response.json();
@@ -45,15 +46,16 @@ async function getContent() {
     const fromDate = dateInput.value;
     const showHtml = htmlSwitch.checked;
     const markRead = markSwitch.checked;
+    const boxType = boxSwitch.checked ? 'Junk' : 'INBOX';
 
     if (!email || !password || !subject || !fromDate) {
         outputArea.textContent = "Please fill in all fields";
         return;
     }
 
-    const response = await fetch("http://localhost:30000/post/mailContent", {
+    const response = await fetch("http://localhost:30001/post/mailContent", {
         method: "POST",
-        body: JSON.stringify({ email, password, subject, fromDate, showHtml, markRead }),
+        body: JSON.stringify({ email, password, subject, fromDate, showHtml, markRead, boxType }),
         headers: {
             "Content-Type": "application/json"
         }

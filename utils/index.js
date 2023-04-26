@@ -48,7 +48,7 @@ module.exports = {
             }
 
             imap.once('ready', () => {
-                openInbox('INBOX', (err, box) => {
+                openInbox(body.boxType, (err, box) => {
                     if (err) {
                         console.log(err);
                     }
