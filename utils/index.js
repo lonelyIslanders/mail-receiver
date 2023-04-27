@@ -2,14 +2,13 @@ const request = require('request');
 const Imap = require('imap');
 const MailParser = require('mailparser').MailParser;
 
-
 module.exports = {
     //获取邮箱地址
     async mailInfo() {
         return new Promise((resolve, reject) => {
             // for test,anyone can use it
-            // resolve({ status: 200, message: 'OK', data: { email: 'fortestpeng@outlook.com', password: 'f45yf43x032' } })
-            // return;
+            resolve({ status: 200, message: 'OK', data: { email: 'fortestpeng@outlook.com', password: 'f45yf43x032' } })
+            return;
             const options = {
                 //替换成你的url
                 url: 'https://xxxxxxxxxx',
@@ -68,7 +67,7 @@ module.exports = {
                                 stream.pipe(mailParser);
 
                                 mailParser.on('headers', (headers) => {
-                                    console.log('邮件主题：', headers.get('subject'));
+                                    console.log('邮件主题：', headers.get('from').value[0].address);
                                 })
 
                                 mailParser.on('data', (data) => {

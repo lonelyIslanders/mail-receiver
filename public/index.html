@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Email Viewer</title>
     <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/socket.io.min.js"></script>
 </head>
 
 <body>
@@ -31,14 +32,17 @@
             </div>
         </div>
         <div class="switch-area">
-            <label for="box-switch">Junk mail</label>
+            <label for="box-switch">Junk</label>
             <input type="checkbox" id="box-switch">
 
-            <label for="mark-read">Mark read</label>
+            <label for="mark-read">Mark</label>
             <input type="checkbox" id="mark-read-switch">
 
             <label for="html-switch">HTML</label>
             <input type="checkbox" id="html-switch">
+
+            <label for="search-method">Socket</label>
+            <input type="checkbox" id="transfer-switch">
         </div>
         <div class="button-area">
             <button id="get-email-btn">Get Email</button>
@@ -53,9 +57,9 @@
             <p>
                 <a target="_blank" href="https://github.com/lonelyIslanders/mail-receiver">GitHub Repository</a><br>
                 暂时只支持微软邮箱，请确保你的邮箱已开通IMAP<br>
-                不会记录你的邮箱信息，这只是个工具<br>
-                默认收件后不会标记已读，您可以打开开关来标记<br>
+                默认收件后不会标记已读，您可以打开开关读取来标记<br>
                 支持大小写及模糊查询，支持垃圾邮件查询
+                更多情况，请看github
             </p>
         </div>
     </div>
